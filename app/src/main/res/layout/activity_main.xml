@@ -1,0 +1,203 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar_gradient"
+        android:elevation="6dp"
+        app:menu="@menu/topbar_menu" />
+
+
+
+    <!-- Search bar -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="12dp"
+        android:translationZ="20dp"
+        android:translationY="-15dp"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search a word"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusTopStart="24dp"
+            app:boxCornerRadiusTopEnd="24dp"
+            app:boxCornerRadiusBottomStart="24dp"
+            app:boxCornerRadiusBottomEnd="24dp"
+            app:boxBackgroundColor="#FFFFFF"
+            android:elevation="6dp"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="#4CAF50"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_close"
+            app:endIconTint="@android:color/darker_gray"
+            android:translationZ="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Dropdown result -->
+        <LinearLayout
+            android:id="@+id/searchResultContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:visibility="gone"
+            android:layout_margin="12dp">
+
+            <TextView
+                android:id="@+id/tvSearchWord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Word" />
+
+            <TextView
+                android:id="@+id/tvSearchPOS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Part of speech"
+                android:textSize="14sp"
+                android:textColor="#757575" />
+
+            <TextView
+                android:id="@+id/tvSearchMeaning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Meaning"
+                android:layout_marginTop="6dp" />
+
+            <TextView
+                android:id="@+id/tvSearchExample"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Example"
+                android:layout_marginTop="4dp"
+                android:textColor="#616161" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:padding="16dp">
+
+        <!-- Word Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="24dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="6dp">
+
+            <TextView
+                android:id="@+id/tvWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvPartOfSpeech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/tvMeaning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Meaning"
+                android:textSize="18sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvExample"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Example"
+                android:textSize="16sp"
+                android:textColor="#616161" />
+        </LinearLayout>
+
+        <!-- Progress & Button -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="gone"
+            app:indicatorSize="48dp"
+            android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get New Word"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="#4CAF50"
+            app:cornerRadius="12dp" />
+
+        <!-- Words History Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Words History"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="#000" />
+
+        <!-- Scrollable History RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistory"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="true"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
