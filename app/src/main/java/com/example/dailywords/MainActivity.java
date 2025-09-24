@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progress;
     private Button btnRefreshNow;
 
-    // 🔍 Search-related views
+    //Search-related views
     private TextInputEditText etSearch;
     private LinearLayout searchResultContainer;
     private TextView tvSearchWord, tvSearchPOS, tvSearchMeaning, tvSearchExample;
@@ -96,17 +96,17 @@ public class MainActivity extends AppCompatActivity {
 
         requestNotificationPermissionIfNeeded();
 
-        // Load history into RecyclerView
+        //Load history into RecyclerView
         loadHistory();
 
-        // Load current word from SharedPreferences
+        //Load current word from SharedPreferences
         loadSavedWord();
 
         searchLayout.setStartIconOnClickListener(v -> performSearch());
 
         searchLayout.setEndIconOnClickListener(v -> toggleSearch(false));
 
-        // Manual refresh
+        //Manual refresh
         btnRefreshNow.setOnClickListener(v -> {
             progress.setVisibility(View.VISIBLE);
             WordFetcher.fetchWord(MainActivity.this, false, () -> {
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             });
         });
 
-        // 🔍 Handle search action
+        //Handle search action
         etSearch.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                     (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER &&
@@ -135,15 +135,15 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        // Schedule repeating fetch
+        //Schedule repeating fetch
         scheduleRepeatingAlarm();
 
-        // Listen for broadcast when a new word is saved
+        //Listen for broadcast when a new word is saved
         wordUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                loadSavedWord(); // update UI with current word
-                loadHistory();   // refresh history
+                loadSavedWord();
+                loadHistory();
             }
         };
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
