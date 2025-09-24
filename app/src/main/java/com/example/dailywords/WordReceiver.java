@@ -13,7 +13,7 @@ public class WordReceiver extends BroadcastReceiver {
         Log.d(TAG, "Alarm triggered: fetching new word...");
         // Auto fetch (with notification)
         WordFetcher.fetchWord(context, true, () -> {
-            // App UI will update via broadcast
+            // App UI update via broadcast
             Intent updateIntent = new Intent("com.example.dailywords.NEW_WORD");
             context.sendBroadcast(updateIntent);
         });

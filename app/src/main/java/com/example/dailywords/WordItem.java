@@ -12,6 +12,5 @@ public class WordItem {
     public String getWord() { return word; }
     public String getMeaning() { return meaning; }
 
-    // Needed for Gson
     public WordItem() {}
 }

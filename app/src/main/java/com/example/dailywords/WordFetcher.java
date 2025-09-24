@@ -107,7 +107,7 @@ public class WordFetcher {
     private static void saveWord(Context context, String word, String pos, String meaning, String example, boolean showNotification) {
         SharedPreferences prefs = context.getSharedPreferences(MainActivity.PREFS, Context.MODE_PRIVATE);
 
-        // ✅ Save old word into history before overwriting
+        // Save old word into history before overwriting
         String oldWord = prefs.getString("word", null);
         String oldMeaning = prefs.getString("meaning", null);
 
@@ -125,7 +125,7 @@ public class WordFetcher {
             Log.d(TAG, "History updated with: " + oldWord);
         }
 
-        // ✅ Now overwrite prefs with new word
+        // Now overwrite prefs with new word
         prefs.edit()
                 .putString("word", word)
                 .putString("pos", pos)
@@ -139,7 +139,7 @@ public class WordFetcher {
         Intent intent = new Intent("com.example.dailywords.NEW_WORD");
         context.sendBroadcast(intent);
 
-        // 🔔 Show notification only if auto-refresh
+        // Show notification only if auto-refresh
         if (showNotification) {
             NotificationHelper.showWordRefreshedNotification(context);
         }
